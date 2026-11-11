@@ -389,8 +389,8 @@ button,input,select,textarea{font:inherit; color:inherit}
 
 (function(){
   // Receção dos pedidos: FormSubmit (formsubmit.co), sem conta. Os pedidos chegam por email a geral@cubomagico.ai.
-  // O primeiro pedido envia um email "Activate Form" para geral@: é preciso clicar nele uma vez.
-  var FORM_ENDPOINT="https://formsubmit.co/ajax/geral@cubomagico.ai";
+  // Formulário ativado a 11.11.2026; o código substitui o endereço para não o expor a robôs de spam.
+  var FORM_ENDPOINT="https://formsubmit.co/ajax/68748c6f533881cd1903a889ca424ade";
   var form=document.getElementById('lead-form'), note=document.getElementById('form-note'), btn=document.getElementById('form-submit');
   var RULES={nome:'Indica o teu nome.',email:'Indica o teu email.',organizacao:'Indica a entidade ou empresa.',interesse:'Escolhe uma opção.',consentimento:'Para respondermos ao pedido, precisamos da tua autorização.'};
   function setErr(n,msg){ var el=form.elements[n], box=el.closest('.field'), er=document.getElementById('e-'+n);
