@@ -415,7 +415,9 @@ button,input,select,textarea{font:inherit; color:inherit}
     if(form.website.value){ thanks(); return; }
     busy(true);
     var v=function(n){ return form.elements[n].value.trim(); };
-    var ctl=window.AbortController?new AbortController():null, tmo=setTimeout(function(){ if(ctl) ctl.abort(); },15000);
+    // o serviço de envio às vezes demora; ao fim de 8 s explica que ainda está a enviar, e só desiste aos 90 s
+    var lento=setTimeout(function(){ note.className='note'; note.textContent='Ainda a enviar, pode demorar até um minuto. Não feches a página.'; },8000);
+    var ctl=window.AbortController?new AbortController():null, tmo=setTimeout(function(){ if(ctl) ctl.abort(); },90000);
     fetch(FORM_ENDPOINT,{method:'POST',signal:ctl&&ctl.signal,headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
         _subject:'Novo pedido de contacto: '+v('organizacao'), _template:'table', _captcha:'false',
         'Nome':v('nome'), email:v('email'), 'Telefone':v('telefone')||'(não indicado)', 'Entidade ou empresa':v('organizacao'),
@@ -423,9 +425,9 @@ button,input,select,textarea{font:inherit; color:inherit}
         'Consentimento':'Sim, para responder a este pedido', 'Origem':'www.cubomagico.ai'
       })})
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ if(!r.ok||String(d.success)==='false') throw r.status; }); })
-      .then(function(){ clearTimeout(tmo); thanks(); })
+      .then(function(){ clearTimeout(tmo); clearTimeout(lento); thanks(); })
       .catch(function(s){
-        clearTimeout(tmo);
+        clearTimeout(tmo); clearTimeout(lento);
         fail(s===429?'Recebemos vários pedidos seguidos. Espera um minuto e tenta de novo, ou escreve para geral@cubomagico.ai.'
           :'Não foi possível enviar o pedido. Os teus dados continuam no formulário: tenta de novo ou escreve para geral@cubomagico.ai.');
       });
