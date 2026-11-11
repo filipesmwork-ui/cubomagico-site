@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CUBO.AI · O teu agente financeiro</title>
+<link rel="canonical" href="https://www.cubomagico.ai/">
+<link rel="icon" href="logo/cubo-logo-escuro.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.cubomagico.ai/">
+<meta property="og:title" content="CUBO.AI · O teu agente financeiro">
+<meta property="og:description" content="Sou o teu Agente de IA, o teu Gestor Financeiro e o teu Contabilista. 7 dias por semana, 24 horas por dia.">
+<meta property="og:image" content="https://www.cubomagico.ai/logo/cubo-logo-claro-1080.png">
+<meta name="theme-color" content="#34363C">
+<meta name="description" content="CUBO.AI: o teu agente financeiro. Pede contacto e falamos contigo em até 2 dias úteis.">
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&display=swap">
+<style>
+/* CUBO.AI a cores: um ecrã por mensagem, pela ordem dos prints.
+   As cores são as pedras da calçada (cubo-ai-1111-calcada.html): quando houver cubo, digital e físico, são estas. */
+:root{
+  --font:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  --basalto:#1B1C1F; --grafite:#34363C; --placa:#2C2E33;
+  --verde:#2FA864; --laranja:#F2852B; --azul:#2D63D2; --vermelho:#D23B30; --amarelo:#F2C12E;
+  --pedra:#F6F6F4; --chao:#E7E8E5;
+  --texto-claro:#E9E9EA; --dim:#A3A6AE; --linha:#74777F; --erro:#F0A69C;
+  --ease:cubic-bezier(.16,1,.3,1);
+  color-scheme:light;
+}
+[hidden]{display:none !important}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth; scrollbar-color:#4A4D55 var(--basalto)}
+body{margin:0; background:var(--basalto); color:var(--basalto); font:400 1.0625rem/1.75 var(--font); -webkit-font-smoothing:antialiased}
+h1,h2,p,ul{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit; color:inherit}
+::selection{background:var(--amarelo); color:var(--basalto)}
+:focus-visible{outline:2px solid currentColor; outline-offset:4px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+
+/* ---------- ecrãs ---------- */
+.painel{
+  --tinta:var(--basalto); --suave:rgba(27,28,31,.82);
+  position:relative; isolation:isolate; overflow:hidden;
+  min-height:100vh; min-height:100svh; display:grid; place-items:center;
+  padding-block:104px 80px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  background:var(--fundo); color:var(--tinta);
+}
+.p-verde{--fundo:var(--verde)}
+.p-laranja{--fundo:var(--laranja)}
+.p-grafite{--fundo:var(--grafite); --tinta:var(--pedra); --suave:rgba(246,246,244,.8)}
+.p-azul{--fundo:var(--azul); --tinta:var(--pedra); --suave:rgba(246,246,244,.86)}
+.conteudo{position:relative; z-index:1; width:100%; max-width:31rem; display:flex; flex-direction:column; align-items:center; gap:clamp(30px,5vh,48px); text-align:center}
+
+/* marca no canto, como nos prints */
+.marca{position:absolute; z-index:2; top:max(20px,env(safe-area-inset-top,0px)); left:max(20px,env(safe-area-inset-left,0px));
+  width:50px; height:50px; display:grid; place-items:center; background:var(--basalto); color:var(--pedra); text-decoration:none;
+  box-shadow:0 0 0 1px rgba(246,246,244,.14),0 10px 20px -12px rgba(0,0,0,.6)}
+.cube{display:grid; grid-template-columns:repeat(2,1fr); column-gap:.5em; row-gap:.08em; font:500 .8rem/1.05 var(--font)}
+.cube span{display:block; text-align:center}
+
+.fala{max-width:22em; font-size:clamp(1.25rem,1rem + 1vw,1.65rem); font-weight:500; line-height:1.6; color:var(--tinta); text-wrap:balance}
+.fala strong{font-weight:600}
+.placa{display:inline-block; color:var(--tinta);
+  font:600 clamp(3.4rem,2rem + 5.4vw,5.4rem)/1 var(--font); letter-spacing:.01em}
+.placa span{font-weight:300; opacity:.66}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.6em; min-height:54px; padding:12px 36px; border:0; border-radius:8px; cursor:pointer;
+  background:var(--basalto); color:var(--pedra); font:500 1.15rem/1.2 var(--font); text-decoration:none;
+  box-shadow:0 12px 26px -16px rgba(0,0,0,.7);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background-color .3s}
+.btn:hover{transform:translateY(-2px); box-shadow:0 20px 32px -18px rgba(0,0,0,.7)}
+.btn:active{transform:translateY(0) scale(.98)}
+.p-grafite .btn,.p-azul .btn{background:var(--pedra); color:var(--basalto)}
+
+/* ecrãs 3 a 5: o método */
+.grupo{display:flex; flex-direction:column; align-items:center; gap:24px}
+.grupo h2{font:600 clamp(1.7rem,1.2rem + 2vw,2.5rem)/1.15 var(--font); letter-spacing:.03em; text-transform:uppercase; text-wrap:balance}
+.num{font:300 clamp(3.2rem,2.2rem + 4vw,4.8rem)/1 var(--font); font-variant-numeric:tabular-nums}
+.passo-titulo{font-size:clamp(1.45rem,1.15rem + 1.1vw,1.9rem); font-weight:500; line-height:1.4; text-wrap:balance}
+
+/* ecrã 6: contacto */
+.cab{font:600 clamp(1.9rem,1.3rem + 2.4vw,2.8rem)/1.1 var(--font); letter-spacing:.06em; text-transform:uppercase}
+.factos{list-style:none; padding:0; display:grid; gap:26px; font-size:clamp(1.2rem,1rem + .8vw,1.5rem); line-height:1.45}
+.factos b{display:block; font-weight:500}
+.factos span{display:block; font-weight:600}
+.factos a{font-weight:600; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.22em}
+
+/* ---------- mosaico: as pedras assentam e o ecrã fica numa cor só ---------- */
+.mosaico{position:absolute; inset:0; z-index:0; width:100%; height:100%; pointer-events:none}
+.js .painel[data-cor] .conteudo>*{opacity:0; transform:translateY(18px); filter:blur(6px)}
+.js .painel[data-cor].assente .conteudo>*{opacity:1; transform:none; filter:none;
+  transition:opacity .9s var(--ease),transform 1s var(--ease),filter .9s var(--ease);
+  transition-delay:calc(.35s + var(--i,0) * .12s)}
+.conteudo>:nth-child(2){--i:1} .conteudo>:nth-child(3){--i:2} .conteudo>:nth-child(4){--i:3}
+
+/* ---------- CUBO.AI → CUBO 4.0 → CUBO (cubo 3D) ---------- */
+.anim{font-weight:inherit}
+.suf{display:inline-grid; justify-items:start; align-items:center; font-style:normal; font-weight:300}
+.suf .s{grid-area:1/1; display:block; font-style:normal; opacity:0; transform:translateY(.3em) rotateX(-75deg); filter:blur(8px);
+  transition:opacity .7s var(--ease),transform .9s var(--ease),filter .7s var(--ease)}
+.suf .s.on{opacity:1; transform:none; filter:none}
+.suf .s-ai.on,.suf .s-40.on{opacity:.66}
+.s-cubo{perspective:30rem; padding-left:.3em}
+.cubo{position:relative; display:block; width:.56em; height:.56em; transform-style:preserve-3d; transform:rotateX(-24deg) rotateY(30deg)}
+.s-cubo.on .cubo{animation:gira 7s linear infinite}
+.cubo i{position:absolute; inset:0; display:block; border:.03em solid var(--basalto); backface-visibility:hidden}
+.cubo i:nth-child(1){background:var(--verde); transform:translateZ(.28em)}
+.cubo i:nth-child(2){background:var(--laranja); transform:rotateY(90deg) translateZ(.28em)}
+.cubo i:nth-child(3){background:var(--azul); transform:rotateY(180deg) translateZ(.28em)}
+.cubo i:nth-child(4){background:var(--vermelho); transform:rotateY(-90deg) translateZ(.28em)}
+.cubo i:nth-child(5){background:var(--amarelo); transform:rotateX(90deg) translateZ(.28em)}
+.cubo i:nth-child(6){background:var(--pedra); transform:rotateX(-90deg) translateZ(.28em)}
+@keyframes gira{from{transform:rotateX(-24deg) rotateY(0)}to{transform:rotateX(-24deg) rotateY(360deg)}}
+
+/* ---------- pedras de navegação ---------- */
+.pedras{position:fixed; z-index:5; right:max(22px,env(safe-area-inset-right,0px)); top:50%; transform:translateY(-50%); display:grid; gap:10px; list-style:none; margin:0; padding:0}
+.pedras a{position:relative; display:block; width:12px; height:12px; background:var(--c); box-shadow:0 0 0 2px rgba(246,246,244,.92),0 4px 10px -4px rgba(0,0,0,.5); transition:transform .45s var(--ease)}
+.pedras a::before{content:""; position:absolute; inset:-8px}
+.pedras a:hover{transform:scale(1.25)}
+.pedras a[aria-current="true"]{transform:scale(1.6)}
+
+/* ---------- pedir contacto ---------- */
+.p-form{--fundo:var(--basalto); --tinta:var(--texto-claro); color-scheme:dark; min-height:auto; padding-block:104px 40px}
+.p-form .conteudo{max-width:34rem; gap:40px; text-align:left; align-items:stretch}
+.p-form h2{text-align:center; font:500 clamp(1.7rem,1.2rem + 2vw,2.5rem)/1.2 var(--font); letter-spacing:.16em; text-transform:uppercase; color:#fff}
+.form{display:grid; gap:24px}
+.field{display:flex; flex-direction:column; gap:2px; position:relative}
+.field label{font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:var(--dim)}
+.field input,.field select,.field textarea{width:100%; min-height:46px; padding:10px 0; background:transparent; border:0; border-bottom:1px solid var(--linha); border-radius:0;
+  color:var(--texto-claro); font-size:1.05rem; font-weight:300; caret-color:var(--laranja); transition:border-color .3s}
+.field select{appearance:none; -webkit-appearance:none; cursor:pointer; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 6l5 5l5-5' fill='none' stroke='%23A3A6AE' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat right 2px center/14px}
+.field select option{background:var(--basalto); color:var(--texto-claro)}
+.field textarea{resize:vertical; min-height:88px}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:none; border-bottom:1px solid var(--laranja); box-shadow:0 1px 0 var(--laranja)}
+.field.invalid input,.field.invalid select{border-bottom-color:var(--erro)}
+.err{font-size:.85rem; color:var(--erro)}
+.field label.consent{display:flex; gap:12px; align-items:flex-start; text-transform:none; letter-spacing:0; font-size:.95rem; color:var(--dim); cursor:pointer}
+.consent input{width:18px; height:18px; min-height:0; margin-top:4px; accent-color:var(--laranja); flex:none}
+.privacy{margin-left:30px; font-size:.82rem; color:var(--dim)}
+.actions{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; margin-top:8px}
+.p-form .btn{background:var(--laranja); color:var(--basalto)}
+.p-form .btn[aria-busy="true"]{opacity:.6; cursor:progress}
+.btn svg{width:16px; height:16px}
+.note{width:100%; text-align:center; font-size:.9rem; color:var(--dim)}
+.note.error{color:var(--erro)}
+.hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+.done{text-align:center; padding:24px 0}
+.done h3{margin:0 0 10px; font:500 1.3rem/1.3 var(--font); letter-spacing:.16em; text-transform:uppercase; color:#fff}
+.done p{color:var(--dim)}
+.rodape{margin-top:72px; text-align:center; font-size:.8rem; color:var(--dim)}
+.rodape .q{display:inline-flex; gap:6px; margin-bottom:14px}
+.rodape .q i{width:9px; height:9px; background:var(--c)}
+
+@media (max-width:700px){
+  .pedras{display:none}
+  .painel{padding-block:96px 64px}
+  .marca{width:44px; height:44px}
+  .cube{font-size:.72rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .suf .s{transform:none; filter:none; transition:opacity .6s}
+  .s-cubo.on .cubo{animation:none}
+  html{scroll-behavior:auto}
+  .btn,.pedras a{transition:none}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Ecrãs">
+  <ul class="pedras">
+    <li><a href="#topo" style="--c:var(--grafite)"><span class="sr">Olá</span></a></li>
+    <li><a href="#balancete" style="--c:var(--azul)"><span class="sr">Balancete</span></a></li>
+    <li><a href="#reconciliacao" style="--c:var(--verde)"><span class="sr">Reconciliação bancária</span></a></li>
+    <li><a href="#candidatura" style="--c:var(--laranja)"><span class="sr">Candidatura</span></a></li>
+    <li><a href="#como-trabalho" style="--c:var(--grafite)"><span class="sr">Como trabalho</span></a></li>
+    <li><a href="#com-quem" style="--c:var(--azul)"><span class="sr">Com quem faço</span></a></li>
+    <li><a href="#como-fazemos" style="--c:var(--verde)"><span class="sr">Como fazemos</span></a></li>
+    <li><a href="#contacto" style="--c:var(--grafite)"><span class="sr">Contacto</span></a></li>
+    <li><a href="#pedir" style="--c:var(--basalto)"><span class="sr">Pedir contacto</span></a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- 1 -->
+  <section class="painel p-grafite" id="topo" data-cor="#34363C" aria-labelledby="t-1">
+    <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <div class="conteudo">
+      <p class="fala"><strong>Olá!</strong><br>Sou o teu Agente de IA<br>Sou o teu Gestor Financeiro<br>Sou o teu Contabilista</p>
+      <h1 class="placa" id="t-1"><span class="sr">CUBO.AI</span><b class="anim" aria-hidden="true">CUBO<em class="suf"><em class="s s-ai on">.AI</em><em class="s s-40">&nbsp;4.0</em><em class="s s-cubo"><em class="cubo"><i></i><i></i><i></i><i></i><i></i><i></i></em></em></em></b></h1>
+      <p class="fala"><strong>Não te preocupes!</strong><br>Agora, estou aqui para ti,<br>7 dias por semana,<br>24 horas por dia.</p>
+      <a class="btn" href="#pedir">Contacta-me já!</a>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="painel p-azul" id="balancete" data-cor="#2D63D2" aria-label="Balancete">
+    <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <div class="conteudo">
+      <p class="fala"><strong>Não te preocupes!</strong><br>Tens mais tempo para ti<br>Sim, vai, não te preocupes,<br>eu termino o balancete.</p>
+      <p class="placa" aria-hidden="true">CUBO<span>.AI</span></p>
+      <p class="fala">Vou trabalhar nisso!<br>Quando estiver pronto eu aviso-te,<br>uns minutinhos e já podemos<br>enviar para o banco.</p>
+      <a class="btn" href="#pedir">Conhece-me melhor!</a>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="painel p-verde" id="reconciliacao" data-cor="#2FA864" aria-label="Reconciliação bancária">
+    <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <div class="conteudo">
+      <p class="fala"><strong>Claro, vou pegar já na Reconciliação Bancária</strong><br>Sim, eu valido com a Contabilidade</p>
+      <p class="placa" aria-hidden="true">CUBO<span>.AI</span></p>
+      <p class="fala">Antes de chegares ao escritório terás o mapa de tesouraria contigo e o plano de pagamentos atualizado.</p>
+      <a class="btn" href="#pedir">Liga-me mal possas!</a>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="painel p-laranja" id="candidatura" data-cor="#F2852B" aria-label="Projeto de investimento">
+    <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <div class="conteudo">
+      <p class="fala"><strong>Vai lá, não te preocupes</strong><br>Eu começo o projeto de investimento. A seguir submetemos a candidatura.</p>
+      <p class="placa" aria-hidden="true">CUBO<span>.AI</span></p>
+      <p class="fala">Coloca-me em contacto com as equipas que eu também trato da memória descritiva com eles.</p>
+      <a class="btn" href="#pedir">Contacta-me já!</a>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="painel p-grafite" id="como-trabalho" data-cor="#34363C" aria-labelledby="t-3">
+    <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <div class="conteudo">
+      <div class="grupo">
+        <p class="num">1</p>
+        <h2 id="t-3">Como trabalho?</h2>
+        <p class="passo-titulo">Conhecemos melhor a tua organização</p>
+      </div>
+      <p class="fala">Sou configurado à medida das tuas necessidades, com a tua estrutura, os teus processos e prioridades.</p>
+      <a class="btn" href="#pedir">Contacta-me já!</a>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="painel p-azul" id="com-quem" data-cor="#2D63D2" aria-labelledby="t-4">
+    <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <div class="conteudo">
+      <div class="grupo">
+        <p class="num">2</p>
+        <h2 id="t-4">Com quem faço?</h2>
+        <p class="passo-titulo">A minha equipa melhora o meu algoritmo</p>
+      </div>
+      <p class="fala">A minha equipa vai perceber melhor a tua estrutura, os teus processos, a tua contabilidade e as tuas prioridades.</p>
+      <a class="btn" href="#pedir">Conhece-me melhor!</a>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="painel p-verde" id="como-fazemos" data-cor="#2FA864" aria-labelledby="t-5">
+    <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <div class="conteudo">
+      <div class="grupo">
+        <p class="num">3</p>
+        <h2 id="t-5">Como fazemos?</h2>
+        <p class="passo-titulo">Adaptamo-nos ao teu crescimento</p>
+      </div>
+      <p class="fala">Adaptamos o algoritmo de forma a teres a minha melhor versão, o melhor da tua contabilidade e gestão financeira.</p>
+      <a class="btn" href="#pedir">Liga-me mal possas!</a>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="painel p-grafite" id="contacto" data-cor="#34363C" aria-labelledby="t-6">
+    <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <div class="conteudo">
+      <h2 class="cab" id="t-6">Contacto</h2>
+      <p class="fala">Deixa os teus contactos e entramos em contacto contigo para percebermos melhor o que faz sentido para a tua organização.</p>
+      <ul class="factos">
+        <li><b>Resposta</b><span>Em até 2 dias úteis</span></li>
+        <li><b>Primeira conversa</b><span>Sem compromisso</span></li>
+        <li><b>Email</b><a href="mailto:geral@cubomagico.ai">geral@cubomagico.ai</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="painel p-form" id="pedir" aria-labelledby="t-7">
+    <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <div class="conteudo">
+      <h2 id="t-7">Pedir contacto</h2>
+      <noscript><p class="note">Para enviares o pedido por aqui, ativa o JavaScript. Também podes escrever-nos para geral@cubomagico.ai.</p></noscript>
+      <form class="form" id="lead-form" method="post" novalidate>
+        <div class="field"><label for="f-nome">Nome</label><input id="f-nome" name="nome" type="text" autocomplete="name" maxlength="120" required aria-describedby="e-nome"><p class="err" id="e-nome" hidden></p></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="160" spellcheck="false" required aria-describedby="e-email"><p class="err" id="e-email" hidden></p></div>
+        <div class="field"><label for="f-tel">Telefone (opcional)</label><input id="f-tel" name="telefone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30"></div>
+        <div class="field"><label for="f-org">Entidade ou empresa</label><input id="f-org" name="organizacao" type="text" autocomplete="organization" maxlength="160" required aria-describedby="e-organizacao"><p class="err" id="e-organizacao" hidden></p></div>
+        <div class="field"><label for="f-interesse">O que procuras?</label>
+          <select id="f-interesse" name="interesse" required aria-describedby="e-interesse">
+            <option value="" selected disabled>Escolhe uma opção</option>
+            <option>Apoio à gestão e contabilidade</option>
+            <option>Candidaturas e financiamento</option>
+            <option>As duas vias</option>
+            <option>Ainda não sei</option>
+          </select><p class="err" id="e-interesse" hidden></p></div>
+        <div class="field"><label for="f-msg">Mensagem (opcional)</label><textarea id="f-msg" name="mensagem" rows="3" maxlength="2000"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="f-web">Website</label><input id="f-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <div class="field">
+          <label class="consent" for="f-consent"><input id="f-consent" name="consentimento" type="checkbox" aria-describedby="e-consentimento"><span>Aceito que o CUBO.AI utilize estes dados para responder a este pedido.</span></label>
+          <p class="err" id="e-consentimento" hidden></p>
+          <p class="privacy">Vê como tratamos os teus dados na <a href="privacidade.html">política de privacidade</a>. Podes pedir para consultar ou apagar os teus dados através de geral@cubomagico.ai.</p>
+        </div>
+        <div class="actions"><button class="btn" type="submit" id="form-submit">Enviar pedido <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5L13.5 8L9 12.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button><p class="note" id="form-note" role="status" aria-live="polite"></p></div>
+      </form>
+      <footer class="rodape">
+        <span class="q" aria-hidden="true"><i style="--c:var(--verde)"></i><i style="--c:var(--laranja)"></i><i style="--c:var(--grafite)"></i><i style="--c:var(--azul)"></i><i style="--c:var(--vermelho)"></i><i style="--c:var(--amarelo)"></i></span>
+        <p>© 2026 CUBO.AI. Todos os direitos reservados.</p>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<script>
+/* Mosaico: cada ecrã chega como calçada de pedras soltas nas cores do cubo e assenta numa cor só. */
+(function(){
+  var root=document.documentElement, paineis=[].slice.call(document.querySelectorAll('.painel[data-cor]'));
+  if(!root.classList.contains('js')||!('IntersectionObserver' in window)){ paineis.forEach(function(s){ s.classList.add('assente'); }); return; }
+  var PAL=['#1B1C1F','#1B1C1F','#F6F6F4','#E7E8E5','#F2852B','#D23B30','#2FA864','#2D63D2','#F2C12E'];
+  var MANCHA=['#1B1C1F','#F2852B','#1B1C1F','#D23B30','#2FA864','#1B1C1F','#2D63D2','#F2C12E'];
+  function semente(s){ return function(){ s=(s*16807)%2147483647; return (s-1)/2147483646; }; }
+  function montar(sec,i){
+    if(sec._m||sec._feito) return;
+    var w=Math.ceil(sec.clientWidth), h=Math.ceil(sec.clientHeight), dpr=Math.min(window.devicePixelRatio||1,2);
+    var cv=document.createElement('canvas'); cv.className='mosaico'; cv.setAttribute('aria-hidden','true');
+    cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr); sec.insertBefore(cv,sec.firstChild);
+    var ctx=cv.getContext('2d'); ctx.scale(dpr,dpr);
+    var S=w<600?20:26, J=3, cols=Math.ceil(w/S), rows=Math.ceil(h/S), R=semente(97+i*131), cor=sec.getAttribute('data-cor'), cells=[];
+    for(var y=0;y<rows;y++) for(var x=0;x<cols;x++){
+      // manchas de cor como na calçada: o campo varia devagar, por isso as pedras juntam-se por cores
+      var f=(Math.sin(x*.19+i*1.7+Math.sin(y*.13)*1.6)+Math.sin(y*.23-x*.07+i*2.3)+2)/4, p;
+      if(f<.38) p=R()<.85?'#E7E8E5':'#F6F6F4'; else if(f>.58&&R()<.22) p=cor; else p=MANCHA[Math.min(MANCHA.length-1,Math.floor(((f+i*.17)%1)*MANCHA.length))];
+      if(R()<.06) p=PAL[Math.floor(R()*PAL.length)];
+      cells.push([x*S,y*S, p, (x/cols)*420+(y/rows)*560+R()*320]);
+    }
+    sec._m={ctx:ctx,cv:cv,cells:cells,S:S,J:J,w:w,h:h,atraso:i===0?250:0};
+    pintar(sec._m,-1);
+  }
+  function pintar(m,t){
+    var ctx=m.ctx, L=m.S-m.J, vivo=false; ctx.clearRect(0,0,m.w,m.h);
+    for(var n=0;n<m.cells.length;n++){
+      var c=m.cells[n], k=t<0?0:(t-m.atraso-c[3])/380;
+      if(k>=1) continue; vivo=true; if(k<0) k=0;
+      var e=k*k*k, lado=L*(1-e), o=(L-lado)/2;
+      ctx.globalAlpha=1-e*.5; ctx.fillStyle=c[2]; ctx.fillRect(c[0]+m.J/2+o,c[1]+m.J/2+o,lado,lado);
+    }
+    ctx.globalAlpha=1; return vivo;
+  }
+  function assentar(sec){
+    if(sec._feito) return; sec._feito=true; sec.classList.add('assente');
+    var m=sec._m; if(!m) return; var t0=null;
+    requestAnimationFrame(function f(ts){
+      if(t0===null) t0=ts;
+      if(pintar(m,ts-t0)) requestAnimationFrame(f); else { m.cv.remove(); sec._m=null; }
+    });
+  }
+  var perto=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ montar(e.target,paineis.indexOf(e.target)); perto.unobserve(e.target); } }); },{rootMargin:'100% 0px 100% 0px'});
+  var dentro=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ montar(e.target,paineis.indexOf(e.target)); assentar(e.target); dentro.unobserve(e.target); } }); },{threshold:.3});
+  paineis.forEach(function(s){ perto.observe(s); dentro.observe(s); });
+})();
+
+/* Marca animada: .AI → 4.0 → cubo 3D, em ciclo (parada se o utilizador pedir menos movimento). */
+(function(){
+  var s=[].slice.call(document.querySelectorAll('.suf .s')); if(s.length<2) return;
+  var i=0, t=[2600,2600,4200];
+  function passo(){ s[i].classList.remove('on'); i=(i+1)%s.length; s[i].classList.add('on'); setTimeout(passo,t[i]); }
+  setTimeout(passo,3200);
+})();
+
+/* Pedras de navegação: marcam o ecrã que está a meio da janela. */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  var links=[].slice.call(document.querySelectorAll('.pedras a'));
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return;
+    links.forEach(function(a){ a.setAttribute('aria-current',a.getAttribute('href')==='#'+e.target.id?'true':'false'); }); }); },{rootMargin:'-50% 0px -50% 0px'});
+  [].forEach.call(document.querySelectorAll('main>.painel'),function(s){ io.observe(s); });
+})();
+
+(function(){
+  // Receção dos pedidos: FormSubmit (formsubmit.co), sem conta. Os pedidos chegam por email a geral@cubomagico.ai.
+  // O primeiro pedido envia um email "Activate Form" para geral@: é preciso clicar nele uma vez.
+  var FORM_ENDPOINT="https://formsubmit.co/ajax/geral@cubomagico.ai";
+  var form=document.getElementById('lead-form'), note=document.getElementById('form-note'), btn=document.getElementById('form-submit');
+  var RULES={nome:'Indica o teu nome.',email:'Indica o teu email.',organizacao:'Indica a entidade ou empresa.',interesse:'Escolhe uma opção.',consentimento:'Para respondermos ao pedido, precisamos da tua autorização.'};
+  function setErr(n,msg){ var el=form.elements[n], box=el.closest('.field'), er=document.getElementById('e-'+n);
+    box.classList.toggle('invalid',!!msg); er.textContent=msg||''; er.hidden=!msg; if(msg) el.setAttribute('aria-invalid','true'); else el.removeAttribute('aria-invalid'); }
+  function check(n){ var el=form.elements[n], v=el.type==='checkbox'?el.checked:el.value.trim(), msg=v?'':RULES[n];
+    if(n==='email'&&v&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) msg='Indica um email válido, por exemplo nome@empresa.pt.';
+    setErr(n,msg); return !msg; }
+  form.addEventListener('focusout',function(e){ var n=e.target.name; if(RULES[n]&&e.target.type!=='checkbox'&&e.target.value) check(n); });
+  form.addEventListener('change',function(e){ var n=e.target.name; if(RULES[n]) check(n); });
+  var label=btn.firstChild.textContent, sending=false;
+  function busy(on){ sending=on; btn.disabled=on; btn.setAttribute('aria-busy',on); btn.firstChild.textContent=on?'A enviar… ':label; }
+  function fail(msg){ busy(false); note.className='note error'; note.textContent=msg; }
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); if(sending) return; note.className='note'; note.textContent='';
+    var first=null; Object.keys(RULES).forEach(function(n){ if(!check(n)&&!first) first=form.elements[n]; });
+    if(first){ first.focus(); return; }
+    if(navigator.onLine===false){ fail('Parece que estás sem ligação à internet. Os teus dados continuam no formulário: tenta de novo quando a ligação voltar.'); return; }
+    function thanks(){
+      form.innerHTML='<div class="done"><h3 tabindex="-1">Obrigado</h3><p>Recebemos o teu pedido e respondemos em até 2 dias úteis.</p></div>';
+      form.querySelector('h3').focus();
+    }
+    if(form.website.value){ thanks(); return; }
+    busy(true);
+    var v=function(n){ return form.elements[n].value.trim(); };
+    var ctl=window.AbortController?new AbortController():null, tmo=setTimeout(function(){ if(ctl) ctl.abort(); },15000);
+    fetch(FORM_ENDPOINT,{method:'POST',signal:ctl&&ctl.signal,headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
+        _subject:'Novo pedido de contacto: '+v('organizacao'), _template:'table', _captcha:'false',
+        'Nome':v('nome'), email:v('email'), 'Telefone':v('telefone')||'(não indicado)', 'Entidade ou empresa':v('organizacao'),
+        'O que procura':form.interesse.value, 'Mensagem':v('mensagem')||'(sem mensagem)',
+        'Consentimento':'Sim, para responder a este pedido', 'Origem':'www.cubomagico.ai'
+      })})
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ if(!r.ok||String(d.success)==='false') throw r.status; }); })
+      .then(function(){ clearTimeout(tmo); thanks(); })
+      .catch(function(s){
+        clearTimeout(tmo);
+        fail(s===429?'Recebemos vários pedidos seguidos. Espera um minuto e tenta de novo, ou escreve para geral@cubomagico.ai.'
+          :'Não foi possível enviar o pedido. Os teus dados continuam no formulário: tenta de novo ou escreve para geral@cubomagico.ai.');
+      });
+  });
+})();
+</script>
+
+
+
+
+</body>
+</html>

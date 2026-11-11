@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- RASCUNHO: retirar o noindex e a faixa de rascunho depois de revisto -->
+<meta name="robots" content="noindex">
+<meta name="description" content="Como o CUBO.AI trata os dados pessoais que envias através do pedido de contacto.">
+<meta name="theme-color" content="#202227">
+<title>Política de privacidade · CUBO.AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300&display=swap"></noscript>
+<style>
+:root{
+  --font:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  --bg:#202227; --panel:#1B1D21; --glow:#2C2F36; --thumb:#3A3D45;
+  --line:rgba(233,233,234,.12); --line-2:rgba(233,233,234,.22);
+  --text:#E9E9EA; --muted:#A3A6AE; --dim:#9A9DA6; --white:#F5F5F4;
+  --ease:cubic-bezier(.16,1,.3,1);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scrollbar-color:var(--thumb) var(--bg)}
+body{margin:0; background:var(--bg); color:var(--text); font:300 1.0625rem/1.7 var(--font); -webkit-font-smoothing:antialiased; caret-color:var(--white)}
+body::before{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(1200px 800px at 50% 0%,var(--glow) 0%,var(--bg) 60%)}
+h1,h2,p,ul{margin:0}
+p,li{text-wrap:pretty}
+a{color:var(--white); text-underline-offset:3px}
+a:hover{color:var(--muted)}
+::selection{background:var(--white); color:var(--bg)}
+:focus-visible{outline:2px solid var(--white); outline-offset:4px}
+.wrap{width:100%; max-width:640px; margin-inline:auto; padding-inline:max(24px,env(safe-area-inset-left,0px))}
+
+.nav{border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex; align-items:center; justify-content:space-between; height:84px; max-width:1180px}
+.mark{display:inline-flex; align-items:flex-end; gap:.3em; padding:6px 0; font:600 1rem/1 var(--font); color:var(--text); text-decoration:none}
+.cube{display:inline-grid; grid-template-columns:repeat(2,1fr); column-gap:.18em; row-gap:.02em}
+.cube span{display:block; text-align:center}.back{font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding:14px 0}
+.back:hover{color:var(--white)}
+
+.draft{margin-top:40px; padding:14px 18px; border:1px dashed var(--line-2); color:var(--muted); font-size:1rem}
+.draft b{color:var(--white); font-weight:500}
+
+main{padding-block:clamp(56px,8vw,96px) clamp(72px,10vw,128px)}
+h1{text-wrap:balance; font:500 clamp(1.9rem,4.2vw,3rem)/1.1 var(--font); letter-spacing:.12em; text-transform:uppercase; color:var(--white)}
+.updated{margin-top:14px; color:var(--dim); font-size:.9rem}
+.lede{margin-top:28px; color:var(--muted); font-size:1.1rem}
+section{margin-top:clamp(40px,5vw,56px); padding-top:clamp(28px,3.5vw,40px); border-top:1px solid var(--line)}
+h2{text-wrap:balance; font:500 1.05rem/1.4 var(--font); letter-spacing:.2em; text-transform:uppercase; color:var(--white); margin-bottom:14px}
+section p+p,section p+ul,section ul+p{margin-top:12px}
+ul{padding-left:1.2em}
+li{margin-top:6px}
+li::marker{color:var(--dim)}
+.todo{background:rgba(245,245,244,.08); color:var(--white); padding:0 .3em; font-style:italic}
+
+.foot{padding-block:40px 48px; border-top:1px solid var(--line); text-align:center; color:var(--dim); font-size:.78rem}
+@media (max-width:640px){ .back{letter-spacing:.16em} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="index.html" aria-label="CUBO.AI, página inicial"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
+    <a class="back" href="index.html#pedir">Voltar ao site</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="draft" role="note"><b>Rascunho para revisão.</b> Este texto foi preparado a partir do que o site faz hoje e ainda não foi validado juridicamente. Complete os campos assinalados e reveja antes de publicar.</p>
+
+  <h1 style="margin-top:40px">Política de privacidade</h1>
+  <p class="updated">Última atualização: 11 de novembro de 2026</p>
+  <p class="lede">Esta política explica que dados pessoais recolhemos quando nos pedes contacto através deste site, para que os usamos e que direitos tens sobre eles.</p>
+
+  <section aria-labelledby="p1">
+    <h2 id="p1">Quem é o responsável</h2>
+    <p>O responsável pelo tratamento dos dados é <span class="todo">[nome legal da entidade]</span>, com o NIF <span class="todo">[NIF]</span> e sede em <span class="todo">[morada]</span>, que opera o CUBO.AI.</p>
+    <p>Para qualquer questão sobre os teus dados, escreve para <a href="mailto:geral@cubomagico.ai">geral@cubomagico.ai</a>.</p>
+  </section>
+
+  <section aria-labelledby="p2">
+    <h2 id="p2">Que dados recolhemos</h2>
+    <p>Apenas os que nos envias no formulário de pedido de contacto:</p>
+    <ul>
+      <li>nome;</li>
+      <li>email;</li>
+      <li>telefone, se o indicares;</li>
+      <li>nome da entidade ou empresa;</li>
+      <li>o tipo de apoio que procuras e a mensagem, se a escreveres;</li>
+      <li>a tua autorização para usarmos estes dados para responder ao pedido.</li>
+    </ul>
+    <p>Não pedimos dados sensíveis. Pedimos-te que não os incluas na mensagem.</p>
+  </section>
+
+  <section aria-labelledby="p3">
+    <h2 id="p3">Para que os usamos</h2>
+    <p>Usamos estes dados só para responder ao teu pedido e, se fizer sentido para a tua organização, para preparar uma proposta. Não os usamos para enviar publicidade nem os vendemos a ninguém.</p>
+    <p>O fundamento é o teu consentimento, dado ao marcar a caixa do formulário (artigo 6.º, n.º 1, alínea a) do RGPD), e as diligências pré-contratuais que nos pedes (alínea b).</p>
+  </section>
+
+  <section aria-labelledby="p4">
+    <h2 id="p4">Quem tem acesso</h2>
+    <p>Os pedidos são entregues por email através do FormSubmit (formsubmit.co), um serviço que faz a ponte entre o formulário e a nossa caixa de correio. Este serviço trata os dados apenas para os entregar.</p>
+    <p>O site é alojado no GitHub Pages, da GitHub, Inc. As letras do site são carregadas a partir do Google Fonts, o que faz com que o teu navegador comunique o endereço IP à Google.</p>
+    <p>Alguns destes fornecedores podem tratar dados fora do Espaço Económico Europeu; quando isso acontece, fazem-no ao abrigo das garantias previstas no RGPD, como as cláusulas contratuais-tipo da Comissão Europeia.</p>
+  </section>
+
+  <section aria-labelledby="p5">
+    <h2 id="p5">Durante quanto tempo</h2>
+    <p>Guardamos os dados do pedido durante 12 meses após o último contacto. Se passares a ser cliente, os dados passam a reger-se pelo contrato que celebrarmos. Se retirares o consentimento antes disso, apagamo-los.</p>
+  </section>
+
+  <section aria-labelledby="p6">
+    <h2 id="p6">Os teus direitos</h2>
+    <p>Podes, a qualquer momento e sem custos:</p>
+    <ul>
+      <li>saber que dados temos sobre ti e pedir uma cópia;</li>
+      <li>corrigir dados errados ou incompletos;</li>
+      <li>pedir que os apaguemos;</li>
+      <li>limitar ou opor-se ao tratamento;</li>
+      <li>receber os dados num formato que possa levar para outro serviço;</li>
+      <li>retirar o consentimento, sem afetar o que foi feito antes.</li>
+    </ul>
+    <p>Para isso, basta escrever para <a href="mailto:geral@cubomagico.ai">geral@cubomagico.ai</a>. Respondemos no prazo máximo de um mês.</p>
+    <p>Se achares que os teus dados não foram bem tratados, podes apresentar queixa à Comissão Nacional de Proteção de Dados em <a href="https://www.cnpd.pt" rel="noopener">www.cnpd.pt</a>.</p>
+  </section>
+
+  <section aria-labelledby="p7">
+    <h2 id="p7">Cookies</h2>
+    <p>Este site não usa cookies nem ferramentas de análise ou publicidade.</p>
+  </section>
+
+  <section aria-labelledby="p8">
+    <h2 id="p8">Alterações</h2>
+    <p>Se mudarmos esta política, publicamos a nova versão nesta página com a data de atualização.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>© 2026 CUBO.AI. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
