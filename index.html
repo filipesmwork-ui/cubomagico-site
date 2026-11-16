@@ -62,7 +62,7 @@ button,input,select,textarea{font:inherit; color:inherit}
 .cube{display:grid; grid-template-columns:repeat(2,1fr); column-gap:.5em; row-gap:.08em; font:500 .8rem/1.05 var(--font)}
 .cube span{display:block; text-align:center}
 
-.fala{max-width:22em; font-size:clamp(1.25rem,1rem + 1vw,1.65rem); font-weight:500; line-height:1.6; color:var(--tinta); text-wrap:balance}
+.fala{max-width:27em; font-size:clamp(1.25rem,1rem + 1vw,1.65rem); font-weight:500; line-height:1.6; color:var(--tinta); text-wrap:balance}
 .fala strong{font-weight:600}
 .placa{display:inline-block; color:var(--tinta);
   font:600 clamp(3.4rem,2rem + 5.4vw,5.4rem)/1 var(--font); letter-spacing:.01em}
@@ -87,6 +87,7 @@ button,input,select,textarea{font:inherit; color:inherit}
 .factos{list-style:none; padding:0; display:grid; gap:26px; font-size:clamp(1.2rem,1rem + .8vw,1.5rem); line-height:1.45}
 .factos b{display:block; font-weight:500}
 .factos span{display:block; font-weight:600}
+.factos .mail b{display:inline}
 .factos a{font-weight:600; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.22em}
 
 /* ---------- mosaico: as pedras assentam e o ecrã fica numa cor só ---------- */
@@ -104,7 +105,7 @@ button,input,select,textarea{font:inherit; color:inherit}
   transition:opacity .7s var(--ease),transform .9s var(--ease),filter .7s var(--ease)}
 .suf .s.on{opacity:1; transform:none; filter:none}
 .suf .s-ai.on,.suf .s-40.on{opacity:.66}
-.s-cubo{perspective:30rem; padding-left:.3em}
+.s-cubo{perspective:30rem; padding-left:.55em}
 .cubo{position:relative; display:block; width:.56em; height:.56em; transform-style:preserve-3d; transform:rotateX(-24deg) rotateY(30deg)}
 .s-cubo.on .cubo{animation:gira 7s linear infinite}
 .cubo i{position:absolute; inset:0; display:block; border:.03em solid var(--basalto); backface-visibility:hidden}
@@ -115,6 +116,12 @@ button,input,select,textarea{font:inherit; color:inherit}
 .cubo i:nth-child(5){background:var(--amarelo); transform:rotateX(90deg) translateZ(.28em)}
 .cubo i:nth-child(6){background:var(--pedra); transform:rotateX(-90deg) translateZ(.28em)}
 @keyframes gira{from{transform:rotateX(-24deg) rotateY(0)}to{transform:rotateX(-24deg) rotateY(360deg)}}
+
+/* ---------- barra de pedras entre ecrãs: as cores do cubo, como na calçada ---------- */
+.faixa{display:flex; gap:2px; height:16px; padding:2px 0; overflow:hidden; background:var(--basalto);
+  background-image:repeating-linear-gradient(90deg,#2D63D2 0 12px,transparent 12px 14px,#1B1C1F 14px 26px,transparent 26px 28px,#F2C12E 28px 40px,transparent 40px 42px,#2FA864 42px 54px,transparent 54px 56px,#E7E8E5 56px 68px,transparent 68px 70px,#F2852B 70px 82px,transparent 82px 84px)}
+.faixa.cheia{background-image:none}
+.faixa i{flex:none; width:12px; height:12px; background:var(--c)}
 
 /* ---------- pedras de navegação ---------- */
 .pedras{position:fixed; z-index:5; right:max(22px,env(safe-area-inset-right,0px)); top:50%; transform:translateY(-50%); display:grid; gap:10px; list-style:none; margin:0; padding:0}
@@ -178,8 +185,8 @@ button,input,select,textarea{font:inherit; color:inherit}
     <li><a href="#reconciliacao" style="--c:var(--verde)"><span class="sr">Reconciliação bancária</span></a></li>
     <li><a href="#candidatura" style="--c:var(--laranja)"><span class="sr">Candidatura</span></a></li>
     <li><a href="#como-trabalho" style="--c:var(--grafite)"><span class="sr">Como trabalho</span></a></li>
-    <li><a href="#com-quem" style="--c:var(--azul)"><span class="sr">Com quem faço</span></a></li>
-    <li><a href="#como-fazemos" style="--c:var(--verde)"><span class="sr">Como fazemos</span></a></li>
+    <li><a href="#com-quem" style="--c:var(--azul)"><span class="sr">Quem somos</span></a></li>
+    <li><a href="#como-fazemos" style="--c:var(--verde)"><span class="sr">Com que objetivo</span></a></li>
     <li><a href="#contacto" style="--c:var(--grafite)"><span class="sr">Contacto</span></a></li>
     <li><a href="#pedir" style="--c:var(--basalto)"><span class="sr">Pedir contacto</span></a></li>
   </ul>
@@ -190,47 +197,47 @@ button,input,select,textarea{font:inherit; color:inherit}
   <section class="painel p-grafite" id="topo" data-cor="#34363C" aria-labelledby="t-1">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
-      <p class="fala"><strong>Olá!</strong><br>Sou o teu Agente de IA<br>Sou o teu Gestor Financeiro<br>Sou o teu Contabilista</p>
+      <p class="fala">Olá!<br>Sou o teu Assistente IA<br>O teu Gestor Financeiro<br>O teu Contabilista Virtual e o<br>teu Gestor de Projetos</p>
       <h1 class="placa" id="t-1"><span class="sr">CUBO.AI</span><b class="anim" aria-hidden="true">CUBO<em class="suf"><em class="s s-ai on">.AI</em><em class="s s-40">&nbsp;4.0</em><em class="s s-cubo"><em class="cubo"><i></i><i></i><i></i><i></i><i></i><i></i></em></em></em></b></h1>
-      <p class="fala"><strong>Não te preocupes!</strong><br>Agora, estou aqui para ti,<br>7 dias por semana,<br>24 horas por dia.</p>
+      <p class="fala">Não te preocupes!<br>Agora, estou aqui para ti,<br>7 dias por semana,<br>24 horas por dia.</p>
       <a class="btn" href="#pedir">Contacta-me já!</a>
     </div>
   </section>
+  <div class="faixa" aria-hidden="true"></div>
 
-  <!-- 2 -->
   <section class="painel p-azul" id="balancete" data-cor="#2D63D2" aria-label="Balancete">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
-      <p class="fala"><strong>Não te preocupes!</strong><br>Tens mais tempo para ti<br>Sim, vai, não te preocupes,<br>eu termino o balancete.</p>
+      <p class="fala">Vai-te sobrar mais tempo<br>Tens mais tempo para te focares em crescer<br>Sim, tens mais tempo para ti, também!<br>Não te preocupes, eu trato do balancete!</p>
       <p class="placa" aria-hidden="true">CUBO<span>.AI</span></p>
-      <p class="fala">Vou trabalhar nisso!<br>Quando estiver pronto eu aviso-te,<br>uns minutinhos e já podemos<br>enviar para o banco.</p>
+      <p class="fala">Vou trabalhar nisso!<br>Quando estiver pronto eu aviso-te.<br>Mais uns minutinhos e já podemos<br>enviar para o banco.</p>
       <a class="btn" href="#pedir">Conhece-me melhor!</a>
     </div>
   </section>
+  <div class="faixa" aria-hidden="true"></div>
 
-  <!-- 3 -->
   <section class="painel p-verde" id="reconciliacao" data-cor="#2FA864" aria-label="Reconciliação bancária">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
-      <p class="fala"><strong>Claro, vou pegar já na Reconciliação Bancária</strong><br>Sim, eu valido com a Contabilidade</p>
+      <p class="fala">Claro, vou já pegar na<br>Reconciliação Bancária.<br>Sim, eu valido com a Contabilidade.<br>Sim, sempre atento aos resultados finais!</p>
       <p class="placa" aria-hidden="true">CUBO<span>.AI</span></p>
-      <p class="fala">Antes de chegares ao escritório terás o mapa de tesouraria contigo e o plano de pagamentos atualizado.</p>
+      <p class="fala">Antes de chegares ao escritório terás<br>todos os mapas que precisas, incluindo<br>o mapa de tesouraria contigo<br>e o plano de pagamentos atualizado.</p>
       <a class="btn" href="#pedir">Liga-me mal possas!</a>
     </div>
   </section>
+  <div class="faixa" aria-hidden="true"></div>
 
-  <!-- 2 -->
   <section class="painel p-laranja" id="candidatura" data-cor="#F2852B" aria-label="Projeto de investimento">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
-      <p class="fala"><strong>Vai lá, não te preocupes</strong><br>Eu começo o projeto de investimento. A seguir submetemos a candidatura.</p>
+      <p class="fala"><strong>Vai lá, não te preocupes</strong><br>Eu começo o projeto de investimento.<br>A seguir submetemos a candidatura,<br>mas não te esqueças que ainda vou precisar de ti!</p>
       <p class="placa" aria-hidden="true">CUBO<span>.AI</span></p>
-      <p class="fala">Coloca-me em contacto com as equipas que eu também trato da memória descritiva com eles.</p>
+      <p class="fala">Coloca-me em contacto com as<br>equipas que eu também trato<br>da memória descritiva com eles.<br>Tenho também a minha equipa para ajudar!</p>
       <a class="btn" href="#pedir">Contacta-me já!</a>
     </div>
   </section>
+  <div class="faixa" aria-hidden="true"></div>
 
-  <!-- 3 -->
   <section class="painel p-grafite" id="como-trabalho" data-cor="#34363C" aria-labelledby="t-3">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
@@ -239,54 +246,55 @@ button,input,select,textarea{font:inherit; color:inherit}
         <h2 id="t-3">Como trabalho?</h2>
         <p class="passo-titulo">Conhecemos melhor a tua organização</p>
       </div>
-      <p class="fala">Sou configurado à medida das tuas necessidades, com a tua estrutura, os teus processos e prioridades.</p>
+      <p class="fala">A minha equipa configura-me à medida das<br>tuas necessidades, com a tua estrutura, os teus processos,<br>e sempre a pensar nas tuas prioridades.</p>
       <a class="btn" href="#pedir">Contacta-me já!</a>
     </div>
   </section>
+  <div class="faixa" aria-hidden="true"></div>
 
-  <!-- 4 -->
   <section class="painel p-azul" id="com-quem" data-cor="#2D63D2" aria-labelledby="t-4">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
       <div class="grupo">
         <p class="num">2</p>
-        <h2 id="t-4">Com quem faço?</h2>
+        <h2 id="t-4">Quem somos?</h2>
         <p class="passo-titulo">A minha equipa melhora o meu algoritmo</p>
       </div>
-      <p class="fala">A minha equipa vai perceber melhor a tua estrutura, os teus processos, a tua contabilidade e as tuas prioridades.</p>
+      <p class="fala">A minha equipa vai perceber melhor<br>como pode adaptar o meu algoritmo às tuas<br>necessidades, personalizando o teu Assistente IA.</p>
       <a class="btn" href="#pedir">Conhece-me melhor!</a>
     </div>
   </section>
+  <div class="faixa" aria-hidden="true"></div>
 
-  <!-- 5 -->
   <section class="painel p-verde" id="como-fazemos" data-cor="#2FA864" aria-labelledby="t-5">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
       <div class="grupo">
         <p class="num">3</p>
-        <h2 id="t-5">Como fazemos?</h2>
+        <h2 id="t-5">Com que objetivo?</h2>
         <p class="passo-titulo">Adaptamo-nos ao teu crescimento</p>
       </div>
-      <p class="fala">Adaptamos o algoritmo de forma a teres a minha melhor versão, o melhor da tua contabilidade e gestão financeira.</p>
+      <p class="fala">Adaptamos o algoritmo às tuas necessidades<br>de hoje e de amanhã.<br>Sou evolutivo, estamos sempre a construir<br>a minha melhor versão para ti.</p>
       <a class="btn" href="#pedir">Liga-me mal possas!</a>
     </div>
   </section>
+  <div class="faixa" aria-hidden="true"></div>
 
-  <!-- 6 -->
   <section class="painel p-grafite" id="contacto" data-cor="#34363C" aria-labelledby="t-6">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
-      <h2 class="cab" id="t-6">Contacto</h2>
-      <p class="fala">Deixa os teus contactos e entramos em contacto contigo para percebermos melhor o que faz sentido para a tua organização.</p>
+      <h2 class="cab" id="t-6">Contacta-me</h2>
+      <p class="fala">Estamos a oferecer uma equipa financeira<br>e tecnológica, que vai crescer contigo!<br>Deixa os teus contactos.</p>
       <ul class="factos">
-        <li><b>Resposta</b><span>Em até 2 dias úteis</span></li>
-        <li><b>Primeira conversa</b><span>Sem compromisso</span></li>
-        <li><b>Email</b><a href="mailto:geral@cubomagico.ai">geral@cubomagico.ai</a></li>
+        <li><b>Falamos contigo</b><span>brevemente</span></li>
+        <li><span>Vamos tentar primeiro<br>perceber melhor o que precisas</span></li>
+        <li><b>Uma conversa</b><span>Sem compromisso</span></li>
+        <li class="mail"><b>Email</b> <a href="mailto:geral@cubomagico.ai">geral@cubomagico.ai</a></li>
       </ul>
     </div>
   </section>
+  <div class="faixa" aria-hidden="true"></div>
 
-  <!-- 7 -->
   <section class="painel p-form" id="pedir" aria-labelledby="t-7">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
@@ -376,6 +384,23 @@ button,input,select,textarea{font:inherit; color:inherit}
   var i=0, t=[2600,2600,4200];
   function passo(){ s[i].classList.remove('on'); i=(i+1)%s.length; s[i].classList.add('on'); setTimeout(passo,t[i]); }
   setTimeout(passo,3200);
+})();
+
+/* Barras de pedras: corridas de cores agrupadas, como no recorte da calçada. */
+(function(){
+  var COR=['#2D63D2','#1B1C1F','#F2C12E','#2FA864','#E7E8E5','#F2852B','#D23B30','#1B1C1F','#2D63D2','#E7E8E5'];
+  function semente(s){ return function(){ s=(s*16807)%2147483647; return (s-1)/2147483646; }; }
+  function encher(){
+    [].forEach.call(document.querySelectorAll('.faixa'),function(f,k){
+      var n=Math.ceil(f.clientWidth/14)+1, R=semente(41+k*977), h='', c, falta=0;
+      for(var i=0;i<n;i++){
+        if(falta<=0){ c=COR[Math.floor(R()*COR.length)]; falta=c==='#E7E8E5'?6+Math.floor(R()*10):2+Math.floor(R()*7); }
+        h+='<i style="--c:'+(R()<.08?COR[Math.floor(R()*COR.length)]:c)+'"></i>'; falta--;
+      }
+      f.innerHTML=h; f.classList.add('cheia');
+    });
+  }
+  encher(); var t; addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(encher,200); });
 })();
 
 /* Pedras de navegação: marcam o ecrã que está a meio da janela. */
