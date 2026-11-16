@@ -87,7 +87,8 @@ button,input,select,textarea{font:inherit; color:inherit}
 .factos{list-style:none; padding:0; display:grid; gap:26px; font-size:clamp(1.2rem,1rem + .8vw,1.5rem); line-height:1.45}
 .factos b{display:block; font-weight:500}
 .factos span{display:block; font-weight:600}
-.factos .mail b{display:inline}
+.factos .linha b,.factos .linha span{display:inline}
+.nb{white-space:nowrap}
 .factos a{font-weight:600; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.22em}
 
 /* ---------- mosaico: as pedras assentam e o ecrã fica numa cor só ---------- */
@@ -185,7 +186,7 @@ button,input,select,textarea{font:inherit; color:inherit}
     <li><a href="#reconciliacao" style="--c:var(--verde)"><span class="sr">Reconciliação bancária</span></a></li>
     <li><a href="#candidatura" style="--c:var(--laranja)"><span class="sr">Candidatura</span></a></li>
     <li><a href="#como-trabalho" style="--c:var(--grafite)"><span class="sr">Como trabalho</span></a></li>
-    <li><a href="#com-quem" style="--c:var(--azul)"><span class="sr">Quem somos</span></a></li>
+    <li><a href="#com-quem" style="--c:var(--azul)"><span class="sr">Como fazemos</span></a></li>
     <li><a href="#como-fazemos" style="--c:var(--verde)"><span class="sr">Com que objetivo</span></a></li>
     <li><a href="#contacto" style="--c:var(--grafite)"><span class="sr">Contacto</span></a></li>
     <li><a href="#pedir" style="--c:var(--basalto)"><span class="sr">Pedir contacto</span></a></li>
@@ -208,7 +209,7 @@ button,input,select,textarea{font:inherit; color:inherit}
   <section class="painel p-azul" id="balancete" data-cor="#2D63D2" aria-label="Balancete">
     <a class="marca" href="#topo" aria-label="CUBO.AI, início"><span class="cube" aria-hidden="true"><span>C</span><span>U</span><span>B</span><span>O</span></span></a>
     <div class="conteudo">
-      <p class="fala">Vai-te sobrar mais tempo<br>Tens mais tempo para te focares em crescer<br>Sim, tens mais tempo para ti, também!<br>Não te preocupes, eu trato do balancete!</p>
+      <p class="fala">Vais ter mais tempo.<br>Foca-te no teu crescimento<br>Sim, tens mais tempo para ti, também!<br>Não te preocupes, eu trato do balancete!</p>
       <p class="placa" aria-hidden="true">CUBO<span>.AI</span></p>
       <p class="fala">Vou trabalhar nisso!<br>Quando estiver pronto eu aviso-te.<br>Mais uns minutinhos e já podemos<br>enviar para o banco.</p>
       <a class="btn" href="#pedir">Conhece-me melhor!</a>
@@ -246,7 +247,7 @@ button,input,select,textarea{font:inherit; color:inherit}
         <h2 id="t-3">Como trabalho?</h2>
         <p class="passo-titulo">Conhecemos melhor a tua organização</p>
       </div>
-      <p class="fala">A minha equipa configura-me à medida das<br>tuas necessidades, com a tua estrutura, os teus processos,<br>e sempre a pensar nas tuas prioridades.</p>
+      <p class="fala">A minha equipa <span class="nb">configura-me</span> à medida das<br>tuas necessidades, com a tua estrutura, os teus processos,<br>e sempre a pensar nas tuas prioridades.</p>
       <a class="btn" href="#pedir">Contacta-me já!</a>
     </div>
   </section>
@@ -257,7 +258,7 @@ button,input,select,textarea{font:inherit; color:inherit}
     <div class="conteudo">
       <div class="grupo">
         <p class="num">2</p>
-        <h2 id="t-4">Quem somos?</h2>
+        <h2 id="t-4">Como fazemos?</h2>
         <p class="passo-titulo">A minha equipa melhora o meu algoritmo</p>
       </div>
       <p class="fala">A minha equipa vai perceber melhor<br>como pode adaptar o meu algoritmo às tuas<br>necessidades, personalizando o teu Assistente IA.</p>
@@ -272,9 +273,9 @@ button,input,select,textarea{font:inherit; color:inherit}
       <div class="grupo">
         <p class="num">3</p>
         <h2 id="t-5">Com que objetivo?</h2>
-        <p class="passo-titulo">Adaptamo-nos ao teu crescimento</p>
+        <p class="passo-titulo">Ajudamos-te a crescer</p>
       </div>
-      <p class="fala">Adaptamos o algoritmo às tuas necessidades<br>de hoje e de amanhã.<br>Sou evolutivo, estamos sempre a construir<br>a minha melhor versão para ti.</p>
+      <p class="fala">Adaptamo-nos às tuas necessidades<br>de hoje e de amanhã.<br>Sou evolutivo, estamos sempre a construir<br>a nossa melhor versão.</p>
       <a class="btn" href="#pedir">Liga-me mal possas!</a>
     </div>
   </section>
@@ -286,10 +287,9 @@ button,input,select,textarea{font:inherit; color:inherit}
       <h2 class="cab" id="t-6">Contacta-me</h2>
       <p class="fala">Estamos a oferecer uma equipa financeira<br>e tecnológica, que vai crescer contigo!<br>Deixa os teus contactos.</p>
       <ul class="factos">
-        <li><b>Falamos contigo</b><span>brevemente</span></li>
-        <li><span>Vamos tentar primeiro<br>perceber melhor o que precisas</span></li>
+        <li class="linha"><b>Falamos</b> <span>brevemente</span></li>
         <li><b>Uma conversa</b><span>Sem compromisso</span></li>
-        <li class="mail"><b>Email</b> <a href="mailto:geral@cubomagico.ai">geral@cubomagico.ai</a></li>
+        <li class="linha"><b>Email</b> <a href="mailto:geral@cubomagico.ai">geral@cubomagico.ai</a></li>
       </ul>
     </div>
   </section>
@@ -310,7 +310,7 @@ button,input,select,textarea{font:inherit; color:inherit}
             <option value="" selected disabled>Escolhe uma opção</option>
             <option>Apoio à gestão e contabilidade</option>
             <option>Candidaturas e financiamento</option>
-            <option>As duas vias</option>
+            <option>As duas opções</option>
             <option>Ainda não sei</option>
           </select><p class="err" id="e-interesse" hidden></p></div>
         <div class="field"><label for="f-msg">Mensagem (opcional)</label><textarea id="f-msg" name="mensagem" rows="3" maxlength="2000"></textarea></div>
